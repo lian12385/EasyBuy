@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--加载properties文件
+          属性:
+            location:  properties文件的路径
+                类路径下资源:  classpath:      target/classes目录下
+        -->
+        <context:property-placeholder location="classpath:db.properties" file-encoding="UTF-8" />
+
+        <!--配置一个数据源:  使用c3p0的连接池的数据源-->
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+            <!--数据库四大参数-->
+            <property name="driverClass" value="${jdbc.driverClass}"  />
+            <property name="jdbcUrl" value="${jdbc.url}" />
+            <property name="user" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>
+
+            <!--连接池相关的参数-->
+            <property name="initialPoolSize" value="${jdbc.initialPoolSize}"/>
+            <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+            <property name="minPoolSize"  value="${jdbc.minPoolSize}"/>
+            <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+        </bean>
+
+
+      <!--SqlSessionFactory的bean-->
+      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+            <!--依赖的数据源-->
+            <property name="dataSource" ref="dataSource"/>
+            <!--mybatis的全局配置文件的路径-->
+            <property name="configLocation" value="classpath:mybatis-cfg.xml"/>
+            <!--配置别名-->
+            <property name="typeAliasesPackage" value="com.zl.easybuy.pojo,com.zl.easybuy.bo"/>
+            <!--mapper映射文件-->
+            <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+      </bean>
+
+
+     <!--mapper扫描器
+        扫描Mapper接口, 生成对应的Mapper接口的代理对象, 把这些代理对象保存到Spring的容器中
+        Mapper代理类对象的bean的id 接口名第一个字母小写的
+     -->
+    <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--扫描mapper接口所在的包-->
+        <property name="basePackage" value="com.zl.easybuy.mapper"/>
+        <!--依赖的SqlSessionFactory对象
+             不适应SqlSessionFactory sqlSessionFactory; 如果使用这个属性:  context:property-placeholder 该配置会失效
+        -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+
+</beans>

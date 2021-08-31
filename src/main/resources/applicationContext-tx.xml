@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+
+
+    <import resource="applicationContext-dao.xml"/>
+      <!--配置声明式事务管理-->
+      <!--配置一个事务管理-->
+    <!-- 配置事务管理器 -->
+    <bean id="txManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入DataSource-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!--事务策略: 对业务层类那些方法添加什么样的事务策略
+         事务策略通知: 使用的事务管理器
+         transaction-manager: 指定使用哪个事务管理器: 默认值transactionManager
+          如果事务管理器的bean的id值为transactionManager,  tx:advice 不需要设置transaction-manager属性
+          如果事务管理器的bean的id值不是transactionManager, 一定设置transaction-manager属性
+
+          配置一个事务的通知类 等同于aop中的logAdvice这个类
+    -->
+    <tx:advice id="txAdvice"  transaction-manager="txManager">
+        <!-- 声明事务的规则
+           read-only: 默认值false;   true表示只读, 查询设置只读
+           propagation: 事务传播机制  默认值: REQUIRED  REQUIRED:默认值,表示如果存在一个事务,则支持当前事务,如果当前没有事务,则开启一个新的事务.  增删改
+            SUPPORTS:表示如果存在一个事务,则支持当前事务,如果当前没有事务,则按非事务方式执行, 查询
+
+            isolation: 事务隔离级别:  数据库设置
+            DEFAULT:默认值,表示使用数据库默认的事务隔离级别
+            READ_UNCOMMITTED:读未提交      安全性最低,  效率最高
+            READ_COMMITTED:读已提交   oracle    解决脏读
+            REPEATABLE_READ: 可重复读  mysql    解决幻读
+            SERIALIZABLE: 串行读   事务一个一个进行排队执行, 安全性高, 效率最低
+
+            timeout: 超时: ,默认 -1  永不超时
+
+             rollback-for:  异常类型,  当业务层的方法产生什么样异常, 才回滚, 默认: RuntimeException   增删改
+
+             no-rollback-for:  异常类型, 指定某个异常下不回滚
+         -->
+        <tx:attributes>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="add*" propagation="REQUIRED"  rollback-for="java.lang.Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--织入-->
+    <!-- 定义切面 -->
+    <aop:config>
+        <!-- 定义切入点
+            实际使用: 复制粘贴, 修改切入点表达式
+         -->
+        <aop:pointcut expression="execution(* com.zl.easybuy.service..*.*(..))" id="pointcut"/>
+        <!-- 将事务增强与切入点组合 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+</beans>
