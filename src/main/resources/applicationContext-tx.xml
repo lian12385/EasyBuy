@@ -72,7 +72,7 @@
         <!-- 定义切入点
             实际使用: 复制粘贴, 修改切入点表达式
          -->
-        <aop:pointcut expression="execution(* com.zl.easybuy.service..*.*(..))" id="pointcut"/>
+        <aop:pointcut expression="execution(* com.buliang.service..*.*(..))" id="pointcut"/>
         <!-- 将事务增强与切入点组合 -->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
