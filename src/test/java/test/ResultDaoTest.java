@@ -1,4 +1,4 @@
-package com.buliang.Dao;
+package test;
 
 import org.junit.Test;
 

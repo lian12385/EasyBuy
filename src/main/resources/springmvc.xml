@@ -11,8 +11,6 @@
        http://www.springframework.org/schema/context/spring-context.xsd
 ">
 
-
-
     <!--视图解析器-->
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -28,61 +26,9 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <mvc:annotation-driven/>
 
-    <!--开启注解的处理器适配器,注解的处理器映射器-->
-   <!-- <mvc:annotation-driven conversion-service="conversionService"/>-->
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper">
-                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
-                        <!-- 处理responseBody 里面日期类型 -->
-                        <!--   <property name="dateFormat">
-                              <bean class="java.text.SimpleDateFormat">
-                                  <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
-                              </bean>
-                          </property>  -->
-                        <!-- 为null字段时不显示 -->
-                        <property name="serializationInclusion">
-                            <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
-                        </property>
-                        <property name="propertyNamingStrategy">
-                            <!--<bean class="com.xxx.serializer.MyPropertyNamingStrategyBase" />-->
-                            <bean class="com.fasterxml.jackson.databind.PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy" />
-                        </property>
-                    </bean>
-                </property>
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json; charset=UTF-8</value>
-                    </list>
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-
-
-
-    <!--扫描注解-->
+    <!--扫描web层的注解-->
     <context:component-scan base-package="com.buliang.web"/>
 
-
-
-
-    <!--配置一个文件上传组件-->
-    <!-- 文件上传 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 设置最大的上传文件大小 :10M = 10*1024*1024  字节-->
-       <!-- <property name="maxUploadSize" value="10485760"></property>-->
-    </bean>
-
-
-
-
-    <!--静态资源的映射器-->
-    <!-- 如果url中/bootstrap/....  直接从/bootstrap/目录下查找资源,-->
-    <mvc:resources mapping="/common/**" location="/common/"/>
-    <mvc:resources mapping="/statics/**" location="/statics/"/>
-	<mvc:resources mapping="/files/**" location="/files/"/>
 </beans>

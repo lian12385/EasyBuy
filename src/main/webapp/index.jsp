@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-h2
+<h1>first page</h1>
+<h2>欢迎：${user.loginName}</h2>
 </body>
 </html>

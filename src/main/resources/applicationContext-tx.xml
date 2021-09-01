@@ -21,11 +21,18 @@
       <!--配置声明式事务管理-->
       <!--配置一个事务管理-->
     <!-- 配置事务管理器 -->
+
+<!--    <bean id="txManager"-->
+<!--          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        &lt;!&ndash;注入DataSource&ndash;&gt;-->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
     <bean id="txManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <!--注入DataSource-->
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
 
 
     <!--事务策略: 对业务层类那些方法添加什么样的事务策略
