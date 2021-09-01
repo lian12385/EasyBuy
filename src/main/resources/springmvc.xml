@@ -65,7 +65,7 @@
 
 
     <!--扫描注解-->
-    <context:component-scan base-package="com.buliang.easybuy.web"/>
+    <context:component-scan base-package="com.buliang.web"/>
 
 
 

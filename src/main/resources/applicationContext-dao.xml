@@ -22,7 +22,7 @@
         <!--配置一个数据源:  使用c3p0的连接池的数据源-->
         <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
             <!--数据库四大参数-->
-            <property name="driverClass" value="${jdbc.driverClass}"  />
+            <property name="driverClass" value=" ${jdbc.driverClass}"  />
             <property name="jdbcUrl" value="${jdbc.url}" />
             <property name="user" value="${jdbc.username}"/>
             <property name="password" value="${jdbc.password}"/>
@@ -36,15 +36,15 @@
 
 
       <!--SqlSessionFactory的bean-->
-      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
             <!--依赖的数据源-->
             <property name="dataSource" ref="dataSource"/>
             <!--mybatis的全局配置文件的路径-->
             <property name="configLocation" value="classpath:mybatis-cfg.xml"/>
             <!--配置别名-->
-            <property name="typeAliasesPackage" value="com.zl.easybuy.pojo,com.zl.easybuy.bo"/>
+            <property name="typeAliasesPackage" value="com.buliang.pojo"/>
             <!--mapper映射文件-->
-            <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+           <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
       </bean>
 
 
@@ -54,11 +54,11 @@
      -->
     <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--扫描mapper接口所在的包-->
-        <property name="basePackage" value="com.zl.easybuy.mapper"/>
+        <property name="basePackage" value="com.buliang.mapper"/>
         <!--依赖的SqlSessionFactory对象
-             不适应SqlSessionFactory sqlSessionFactory; 如果使用这个属性:  context:property-placeholder 该配置会失效
+            不适应SqlSessionFactory sqlSessionFactory; 如果使用这个属性:  context:property-placeholder 该配置会失效
         -->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
     </bean>
 
 
