@@ -3,8 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
-    <!--配置监听器: 监听Tomcat启动,   一旦Tomcat启动,马上执行该监听器: 创建Spring容器对象-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -35,7 +33,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--编码过滤器-->
+    <!--配置处理编码的过滤器-->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

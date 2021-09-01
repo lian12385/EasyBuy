@@ -1,6 +1,7 @@
 package com.buliang.mapper;
 
 import com.buliang.pojo.User;
+import com.buliang.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +15,18 @@ import static org.junit.Assert.*;
 public class UserMapperTest {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Test
     public void queryById(){
-        System.out.println(userMapper.queryById(2));
+        System.out.println(userService.queryById(2));
     }
 
     @Test
     public void addUser(){
         User user = new User();
         //user.set
-        userMapper.addUser(user);
+        //userMapper.addUser(user);
     }
 
 }

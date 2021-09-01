@@ -22,7 +22,7 @@
         <!--配置一个数据源:  使用c3p0的连接池的数据源-->
         <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
             <!--数据库四大参数-->
-            <property name="driverClass" value=" ${jdbc.driverClass}"  />
+            <property name="driverClass" value="${jdbc.driverClass}"  />
             <property name="jdbcUrl" value="${jdbc.url}" />
             <property name="user" value="${jdbc.username}"/>
             <property name="password" value="${jdbc.password}"/>
