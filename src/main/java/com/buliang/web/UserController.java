@@ -50,4 +50,14 @@ public class UserController {
         return "redirect:/pre/login.jsp";
     }
 
+    @ResponseBody
+    @PostMapping("/Register")
+    public ResultVo<Null> register(User user){
+        user.setType(0);
+        if (userService.addUser(user)){
+            return  ResultVo.success();
+        }
+        return ResultVo.fail(ResultCode.REGISTER_FAIL);
+    }
+
 }

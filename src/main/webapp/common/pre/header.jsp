@@ -91,7 +91,7 @@
             <span class="fl">|&nbsp;<a href="${ctx}/admin/product?action=index&userId=${sessionScope.loginUser.id}">后台管理</a>&nbsp;</span>
           </c:if>
            <c:if test="${sessionScope.loginUser!=null}">
-             <span class="fl">|&nbsp;<a href="${ctx}/user/loginOut" >注销</a></span>
+             <span class="fl">|&nbsp;<a href="${ctx}/User/loginOut" >注销</a></span>
           </c:if>
         </span>
   </div>

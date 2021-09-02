@@ -9,7 +9,6 @@ function register() {
     var email = jq("input[name='email']").val();
     var mobile = jq("input[name='mobile']").val();
     var identityCode = jq("input[name='identityCode']").val();
-    var address = jq("input[name='address']").val();
     var sex = jq("input[name='sex']:checked").val();
     //判断密码是否一致
     if(loginName==null || loginName==""){
@@ -67,8 +66,7 @@ function register() {
             sex: sex,
             email: email,
             mobile: mobile,
-            identityCode: identityCode,
-            address: address
+            identityCode: identityCode
         },
         success: function (result) {
             if (result.code == 2000) {

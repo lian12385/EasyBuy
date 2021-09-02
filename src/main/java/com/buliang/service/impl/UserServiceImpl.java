@@ -21,9 +21,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int addUser(User user) {
-        int result = userMapper.addUser(user);
-        return result;
+    public boolean addUser(User user) {
+        User user1 = userMapper.login(user.getLoginName());
+        if(user1 ==null) {
+            user.setPassword(PasswordUtils.generate(user.getPassword()));
+            if(userMapper.addUser(user)>0){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

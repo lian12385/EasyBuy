@@ -23,7 +23,8 @@
               	<td width="55">&nbsp;</td>
                 <td>
                 	<span class="fl" style="font-size:24px;">登录</span>
-                    <span class="fr">还没有商城账号，<a href="${ctx}/Register?action=toRegister" style="color:#ff4e00;">立即注册</a></span>
+<%--                    /Register?action=toRegister--%>
+                    <span class="fr">还没有商城账号，<a href="${ctx}/User/page/register" style="color:#ff4e00;">立即注册</a></span>
                 </td>
               </tr>
               <tr height="70">

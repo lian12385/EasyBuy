@@ -8,7 +8,7 @@ function login(){
         type:"post",
         data:{loginName:loginName,password:password},
         success:function(result){
-            if(result.code==200){
+            if(result.code==2000){
                 //window.location.href=contextPath+"/Home?action=index";
                window.location.href=contextPath+"/User/page/index";
             }else{

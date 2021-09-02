@@ -18,10 +18,10 @@ public class UserServiceImplTest {
     private UserService userService;
 
     @Test
-    public void addUser() {
+    public void testAddUser() {
         User user = new User();
-        user.setLoginName("wangwu");
-        user.setUserName("王五");
+        user.setLoginName("buliang");
+        user.setUserName("buliang");
         user.setPassword("123");
         user.setSex(1);
         user.setEmail("wangwu@163.com");
