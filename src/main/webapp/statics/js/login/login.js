@@ -10,7 +10,7 @@ function login(){
         success:function(result){
             if(result.code==2000){
                 //window.location.href=contextPath+"/Home?action=index";
-               window.location.href=contextPath+"/User/page/index";
+               window.location.href=contextPath+"/Home/index";
             }else{
                 showMessage(result.msg)
             }

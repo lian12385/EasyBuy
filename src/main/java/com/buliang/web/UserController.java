@@ -53,7 +53,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/Register")
     public ResultVo<Null> register(User user){
-        user.setType(0);
         if (userService.addUser(user)){
             return  ResultVo.success();
         }

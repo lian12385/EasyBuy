@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Date;//在实体类中使用java工具类,父类
+//import java.sql.Date; 子类
 
 @Data
 @AllArgsConstructor

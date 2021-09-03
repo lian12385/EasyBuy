@@ -14,5 +14,6 @@ public class ProductCategory implements Serializable{
 	private Integer parentId;//父级ID
 	private Integer type;//分类级别
 	private String iconClass;
+
 	private String parentName;//父级分类名
 }

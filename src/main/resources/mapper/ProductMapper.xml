@@ -5,4 +5,32 @@
 
  <mapper namespace="com.buliang.mapper.ProductMapper">
 
+    <select id="queryByPages" parameterType="com.buliang.bo.ProductBo" resultType="com.buliang.pojo.Product">
+        select * from easybuy_product
+            <if test="productBo!=null">
+                <where>
+                <if test="productBo.product!=null">
+                    <if test="productBo.product.id != null">
+                        and id = #{productBo.product.id}
+                    </if>
+                    <if test="productBo.product.name != null and productBo.product.name != '' ">
+                        and name like '%${productBo.product.name}%'
+                    </if>
+                    <if test="productBo.product.categoryLevel1Id != null ">
+                        and  categoryLevel1Id = #{productBo.product.categoryLevel1Id}
+                    </if>
+                    <if test="productBo.product.categoryLevel2Id != null ">
+                        and  categoryLevel2Id = #{productBo.product.categoryLevel2Id}
+                    </if>
+                    <if test="productBo.product.categoryLevel3Id != null ">
+                        and  categoryLevel3Id = #{productBo.product.categoryLevel3Id}
+                    </if>
+                </if>
+                </where>
+                <if test="productBo.isPage">
+                    limit #{productBo.startIndex}, #{productBo.pageSize}
+                </if>
+            </if>
+
+    </select>
 </mapper>

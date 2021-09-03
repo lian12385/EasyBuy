@@ -18,5 +18,6 @@ public class Product implements Serializable{
 	private Integer categoryLevel2Id;//二级分类
 	private Integer categoryLevel3Id;//三级分类
 	private String fileName;//图片名称
+	private boolean isDelete;//逻辑删除
 
 }

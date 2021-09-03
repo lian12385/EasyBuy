@@ -4,5 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.buliang.mapper.ProductCategoryMapper">
-
+    <select id="queryByType" parameterType="int" resultType="com.buliang.pojo.ProductCategory">
+        SELECT * FROM easybuy_product_category WHERE type=#{i}
+    </select>
+    <select id="queryByParentId" parameterType="Integer" resultType="com.buliang.pojo.ProductCategory">
+        SELECT * FROM easybuy_product_category WHERE parentId=#{id}
+    </select>
 </mapper>

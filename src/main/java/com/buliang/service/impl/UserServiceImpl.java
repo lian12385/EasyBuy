@@ -3,12 +3,11 @@ package com.buliang.service.impl;
 import com.buliang.mapper.UserMapper;
 import com.buliang.pojo.User;
 import com.buliang.service.UserService;
+import com.buliang.util.Constant;
 import com.buliang.util.PasswordUtils;
 import com.buliang.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,6 +23,7 @@ public class UserServiceImpl implements UserService {
     public boolean addUser(User user) {
         User user1 = userMapper.login(user.getLoginName());
         if(user1 ==null) {
+            user.setType(Constant.USER_TYP_NORMAL);
             user.setPassword(PasswordUtils.generate(user.getPassword()));
             if(userMapper.addUser(user)>0){
                 return true;
