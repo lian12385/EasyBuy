@@ -3,6 +3,7 @@ package com.buliang.web;
 import com.buliang.pojo.News;
 import com.buliang.service.NewsService;
 import com.buliang.service.ProductCategoryService;
+import com.buliang.util.Pages;
 import com.buliang.vo.ProductCategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,8 @@ public class HomeController {
         List<ProductCategoryVo> productCategoryVoList = productCategoryService.queryAllProductCategory();
         model.addAttribute("productCategoryVoList",productCategoryVoList);
 
-        //Pages<News> newsPages = newsService.queryNewsByPage();
-        //model.addAttribute("news",newPages.getRecord);
+        Pages<News> newsPages = newsService.queryNewsByPage();
+        model.addAttribute("news",newsPages.getRecords());
 
         return "forward:/pre/index.jsp";
     }

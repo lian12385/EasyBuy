@@ -6,7 +6,6 @@ import com.buliang.mapper.ProductMapper;
 import com.buliang.pojo.Product;
 import com.buliang.pojo.ProductCategory;
 import com.buliang.service.ProductCategoryService;
-import com.buliang.util.Pages;
 import com.buliang.vo.ProductCategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         ProductBo productBo = new ProductBo();
         productBo.setPage(true);
         productBo.setStartIndex(0);
-        productBo.setPageSize(5);
+        productBo.setPageSize(6);
 
         Product product = new Product();
         productBo.setProduct(product);

@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ProductMapper {
-    public List<Product> queryByPages(@Param("productBo") ProductBo productBo);
+    List<Product> queryByPages(@Param("productBo") ProductBo productBo);
 }

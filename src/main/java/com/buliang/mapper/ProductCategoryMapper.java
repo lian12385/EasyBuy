@@ -7,6 +7,6 @@ import com.buliang.vo.ProductCategoryVo;
 import java.util.List;
 
 public interface ProductCategoryMapper {
-    public List<ProductCategory> queryByType(int i);
-    public List<ProductCategory> queryByParentId(Integer id);
+    List<ProductCategory> queryByType(int i);
+    List<ProductCategory> queryByParentId(Integer id);
 }
