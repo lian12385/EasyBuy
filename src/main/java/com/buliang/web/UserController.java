@@ -30,7 +30,6 @@ public class UserController {
     @PostMapping("/Login")
     public ResultVo<Null> login(String loginName, String password){
         //boolean isOk = userService.login(loginName,msg);
-        int i = 1;
         if(userService.queryByNameAndPassword(loginName,password)){
             return ResultVo.success();
         }

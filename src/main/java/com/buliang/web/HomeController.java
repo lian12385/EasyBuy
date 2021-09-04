@@ -9,14 +9,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("/Home")
 public class HomeController {
 
-    @Autowired
+    //@Autowired
+    //ProductCategoryService productCategoryService;
+
+    @Resource( type = ProductCategoryService.class)
     ProductCategoryService productCategoryService;
+
     @Autowired
     NewsService newsService;
 

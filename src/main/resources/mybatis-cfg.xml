@@ -6,5 +6,9 @@
 <!--    <settings>-->
 <!--        <setting name="logImpl" value="LOG4J"/>-->
 <!--    </settings>-->
+    <typeAliases>
+        <package name="com.buliang.pojo"/>
+        <package name="com.buliang.bo"/>
+    </typeAliases>
 
 </configuration>

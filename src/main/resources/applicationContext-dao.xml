@@ -42,7 +42,7 @@
             <!--mybatis的全局配置文件的路径-->
             <property name="configLocation" value="classpath:mybatis-cfg.xml"/>
             <!--配置别名-->
-            <property name="typeAliasesPackage" value="com.buliang.pojo"/>
+<!--            <property name="typeAliasesPackage" value="com.buliang.pojo"/>-->
             <!--mapper映射文件-->
            <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
       </bean>

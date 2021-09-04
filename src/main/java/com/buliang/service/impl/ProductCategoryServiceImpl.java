@@ -67,6 +67,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
             firstProductCategoryVo.setProductCategoryVoList(secondProductCategoryVoList);
 
+            //之查询到第一级别的商品列表，直接调用其他dao混合查询
             product.setCategoryLevel1Id(firstProductCategory.getId());
             List<Product> productList = productMapper.queryByPages(productBo);
             firstProductCategoryVo.setProductList(productList);
