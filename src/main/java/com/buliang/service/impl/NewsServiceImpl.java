@@ -1,5 +1,6 @@
 package com.buliang.service.impl;
 
+import com.buliang.bo.NewsBo;
 import com.buliang.mapper.NewsMapper;
 import com.buliang.pojo.News;
 import com.buliang.service.NewsService;
@@ -17,14 +18,21 @@ public class NewsServiceImpl implements NewsService {
     NewsMapper newsMapper;
 
     @Override
-    public Pages<News> queryNewsByPage() {
+    public Pages<News> queryNewsByPage(NewsBo newsBo) {
         Pages<News> pagesNews = new Pages<>();
-        pagesNews.setPageIndex(0);
-        pagesNews.setPageSize(6);
-        pagesNews.setTotalCount(newsMapper.queryTotalCountNews());
-        List<News> news = newsMapper.queryNews();
+        if (newsBo == null) {
+            return null;
+        }
+        pagesNews.setPageIndex(newsBo.getPageIndex());
+        pagesNews.setPageSize(newsBo.getPageSize());
+        pagesNews.setTotalCount(newsMapper.queryTotalCountNews(newsBo));
+        List<News> news = newsMapper.queryNews(newsBo);
         pagesNews.setRecords(news);
         return pagesNews;
+    }
 
+    @Override
+    public News queryNewsDetail(Integer id) {
+        return newsMapper.queryNewsDetail(id);
     }
 }

@@ -85,12 +85,12 @@
         <!--End Banner End-->
         <div class="inews">
             <div class="news_t">
-                <span class="fr"><a href="${ctx}/admin/news?action=queryNewsList">更多 ></a></span>新闻资讯
+                <span class="fr"><a href="${ctx}/admin/news/queryNewsList">更多 ></a></span>新闻资讯
             </div>
             <ul>
                 <c:forEach items="${news}" var="temp">
                     <li><span>[ 公告 ]</span>
-                        <a href="${ctx}/admin/news?action=newsDeatil&id=${temp.id}">${temp.title}</a>
+                        <a href="${ctx}/admin/news/newDetail?id=${temp.id}">${temp.title}</a>
                     </li>
                 </c:forEach>
             </ul>

@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <%@ include file="/common/pre/header.jsp" %>
+    <%@ include file="/common/pre/link.jsp" %>
     <link type="text/css" rel="stylesheet" href="${ctx}/statics/css/style.css" />
 </head>
 <body>
+<%@ include file="/common/pre/header.jsp" %>
 <%@ include file="/common/backend/searchBar.jsp" %>
 <div class="i_bg bg_color">
     <!--Begin 用户中心 Begin -->
@@ -21,9 +22,9 @@
                     <td width="20%">文章标题</td>
                     <td width="25%">创建时间</td>
                 </tr>
-                <c:forEach items="${newsList}" var="temp">
+                <c:forEach items="${pager.records}" var="temp">
                     <tr>
-                        <td><a href="${ctx}/admin/news?action=newsDeatil&id=${temp.id}">${temp.title}</a></td>
+                        <td><a href="${ctx}/admin/news/newDetail?id=${temp.id}">${temp.title}</a></td>
                         <td><fmt:formatDate type="date" dateStyle="long" value="${temp.createTime}" ></fmt:formatDate></td>
                     </tr>
                 </c:forEach>

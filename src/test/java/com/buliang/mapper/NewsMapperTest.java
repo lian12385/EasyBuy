@@ -1,5 +1,6 @@
 package com.buliang.mapper;
 
+import com.buliang.bo.NewsBo;
 import com.buliang.pojo.News;
 import com.buliang.util.Pages;
 import org.junit.Test;
@@ -16,22 +17,36 @@ import static org.junit.Assert.*;
 @ContextConfiguration( "classpath:applicationContext.xml")
 public class NewsMapperTest {
 
-    @Test
-    public void queryNewsByPages() {
-    }
 
     @Autowired
     NewsMapper newsMapper;
 
+
     @Test
-    public void queryTotalCountNews() {
+    public void queryNews() {
+        NewsBo newsBo = new NewsBo();
+        newsBo.setPage(true);
+        newsBo.setPageSize(5);
+        newsBo.setPageIndex(1);
+
         Pages<News> pagesNews = new Pages<>();
-        pagesNews.setPageIndex(0);
-        pagesNews.setPageSize(6);
-        pagesNews.setTotalCount(newsMapper.queryTotalCountNews());
-        Long a = pagesNews.getTotalPages();
-        List<News> news = newsMapper.queryNews();
+        if (newsBo == null) {
+            System.out.println("null");;
+        }
+        pagesNews.setPageIndex(newsBo.getPageIndex());
+        pagesNews.setPageSize(newsBo.getPageSize());
+        pagesNews.setTotalCount(newsMapper.queryTotalCountNews(newsBo));
+        List<News> news = newsMapper.queryNews(newsBo);
         pagesNews.setRecords(news);
         System.out.println(pagesNews);
+    }
+
+    @Test
+    public void testQueryTotalCountNews() {
+    }
+
+    @Test
+    public void queryNewsDetail() {
+        newsMapper.queryNewsDetail(531);
     }
 }

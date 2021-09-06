@@ -1,5 +1,6 @@
 package com.buliang.web;
 
+import com.buliang.bo.NewsBo;
 import com.buliang.pojo.News;
 import com.buliang.service.NewsService;
 import com.buliang.service.ProductCategoryService;
@@ -32,7 +33,13 @@ public class HomeController {
         List<ProductCategoryVo> productCategoryVoList = productCategoryService.queryAllProductCategory();
         model.addAttribute("productCategoryVoList",productCategoryVoList);
 
-        Pages<News> newsPages = newsService.queryNewsByPage();
+        NewsBo newsBo = new NewsBo();
+        newsBo.setPage(true);
+        newsBo.setPageSize(5);
+        newsBo.setPageIndex(1);
+
+
+        Pages<News> newsPages =  newsService.queryNewsByPage(newsBo);
         model.addAttribute("news",newsPages.getRecords());
 
         return "forward:/pre/index.jsp";
