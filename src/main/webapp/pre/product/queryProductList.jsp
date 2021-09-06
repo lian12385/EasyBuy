@@ -3,12 +3,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <%@ include file="/common/pre/header.jsp" %>
+    <%@ include file="/common/pre/link.jsp" %>
     <script type="text/javascript" src="${ctx}/statics/js/common/n_nav.js"></script>
     <script src="${ctx}/statics/js/cart/cart.js"></script>
     <title>易买网</title>
 </head>
 <body>
+<%@ include file="/common/pre/header.jsp" %>
 <!--Begin Header Begin-->
 <div id="searchBar">
     <%@ include file="/common/pre/searchBar.jsp" %>
@@ -31,21 +32,21 @@
         </div>
         <div class="l_list">
             <div class="list_t">
-                <span class="fr">共发现${total}件</span>
+                <span class="fr">共发现${pager.totalCount}件</span>
             </div>
             <div class="list_c">
                 <ul class="cate_list">
-                    <c:forEach items="${productList}" var="temp">
+                    <c:forEach items="${pager.records}" var="temp">
                         <li>
                             <div class="img">
-                                <a href="${ctx}/Product?action=queryProductDeatil&id=${temp.id}" target="_blank">
+                                <a href="${ctx}/Product/queryProductDeatil?id=${temp.id}" target="_blank">
                                     <img src="${ctx}/files/${temp.fileName}" width="210" height="185"/>
                                 </a>
                             </div>
                             <div class="price">
                                 <font>￥<span>${temp.price}</span></font>
                             </div>
-                            <div class="name"><a href="${ctx}/Product?action=queryProductDeatil&id=${temp.id}">${temp.name}</a></div>
+                            <div class="name"><a href="${ctx}/Product/queryProductDeatil?id=${temp.id}">${temp.name}</a></div>
                             <div class="carbg">
                                 <a href="javascript:void(0);" class="ss" onclick="addFavorite('${temp.id}')">收藏</a>
                                 <a href="javascript:void(0);" class="j_car" onclick="addCartByParam('${temp.id}',1);">加入购物车</a>

@@ -7,28 +7,43 @@
     <select id="queryByPages" parameterType="productBo" resultType="product">
         SELECT * FROM easybuy_product
         <if test = "productBo != null">
-            <where>
-                <if test = "productBo.product != null">
-                    <if test = "productBo.product.id != null">
-                        and id = #{id}
-                    </if>
-                    <if test = "productBo.product.name != null and productBo.product.name!=''">
-                        and name like '%${productBo.product.name}%'
-                    </if>
-                    <if test = "productBo.product.categoryLevel1Id != null">
-                        and categoryLevel1Id=#{productBo.product.categoryLevel1Id}
-                    </if>
-                    <if test = "productBo.product.categoryLevel2Id != null">
-                        and categoryLevel2Id=#{productBo.product.categoryLevel2Id}
-                    </if>
-                    <if test = "productBo.product.categoryLevel3Id != null">
-                        and categoryLevel3Id=#{productBo.product.categoryLevel3Id}
-                    </if>
-                </if>
-            </where>
+            <include refid="where_sql"/>
             <if test = "productBo.isPage">
                 limit #{productBo.startIndex}, #{productBo.pageSize}
             </if>
         </if>
     </select>
+
+    <select id="count" parameterType="ProductBo" resultType="long">
+        select count(1) from easybuy_product
+        <if test="productBo != null">
+            <include refid="where_sql"/>
+        </if>
+    </select>
+    <select id="queryById" parameterType="int" resultType="Product">
+        select * from easybuy_product where id = #{id}
+    </select>
+
+    <sql id="where_sql">
+        <where>
+            <if test = "productBo.product != null">
+                <if test = "productBo.product.id != null">
+                    and id = #{id}
+                </if>
+                <if test = "productBo.product.name != null and productBo.product.name!=''">
+                    and name like '%${productBo.product.name}%'
+                </if>
+                <if test = "productBo.product.categoryLevel1Id != null">
+                    and categoryLevel1Id=#{productBo.product.categoryLevel1Id}
+                </if>
+                <if test = "productBo.product.categoryLevel2Id != null">
+                    and categoryLevel2Id=#{productBo.product.categoryLevel2Id}
+                </if>
+                <if test = "productBo.product.categoryLevel3Id != null">
+                    and categoryLevel3Id=#{productBo.product.categoryLevel3Id}
+                </if>
+            </if>
+        </where>
+    </sql>
+
 </mapper>

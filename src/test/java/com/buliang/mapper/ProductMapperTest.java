@@ -30,4 +30,8 @@ public class ProductMapperTest {
 
         productMapper.queryByPages(productBo);
     }
+
+    @Test
+    public void testQueryByPages() {
+    }
 }
