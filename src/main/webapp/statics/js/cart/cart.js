@@ -54,7 +54,7 @@ function refreshCart(){
  */
 function settlement1(){
     $.ajax({
-        url: contextPath + "/Cart/settlement1",
+        url: contextPath + "/Cart/settlement/1",
         method: "post",
         success: function (jsonStr) {
         	refreshCart();
@@ -67,7 +67,7 @@ function settlement1(){
  */
 function settlement2(){
     $.ajax({
-        url: contextPath + "/Cart/settlement2",
+        url: contextPath + "/Cart/settlement/2",
         method: "post",
         success: function (jsonStr) {
             $("#settlement").html(jsonStr);
@@ -95,7 +95,7 @@ function settlement3(){
         }
     }
     $.ajax({
-        url: contextPath + "/Cart/settlement3",
+        url: contextPath + "/Cart/settlement/3",
         method: "post",
         data: {
             addressId:addressId,
@@ -142,20 +142,20 @@ function subQuantity(obj,entityId){
  */
 function modifyCart(entityId,quantity,obj){
 	$.ajax({
-        url: contextPath + "/Cart/modCart",
+        url: contextPath + "/Cart/modifyCart",
         method: "post",
         data: {
             entityId:entityId,
             quantity:quantity
         },
-        success: function (jsonStr) {
-        	var result = eval("(" + jsonStr + ")");
+        success: function (result) {
+        	// var result = eval("(" + jsonStr + ")");
             //状态判断
-            if (result.status == 1) {
+            if (result.code == 2000) {
                 obj.parent().find(".car_ipt").val(quantity);
                 settlement1();
             }else{
-           	 	showMessage(result.message);
+           	 	showMessage(result.msg);
             }
         }
     });

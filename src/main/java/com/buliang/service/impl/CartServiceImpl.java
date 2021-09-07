@@ -23,6 +23,7 @@ public class CartServiceImpl implements CartService {
         Cart cart = SessionUtil.getCurrentCart() ;
         if(cart == null){
             cart = new Cart();
+            //把购物车添加到session
             SessionUtil.setCart(cart);
         }
         Product product = productService.queryById(entityId);
@@ -51,5 +52,27 @@ public class CartServiceImpl implements CartService {
         productCartItem.setQuantity(quantity);
         cartItems.add(productCartItem);
         return true;
+    }
+
+    @Override
+    public boolean modifyCart(Integer entityId, Integer quantity) throws AddToCartExc {
+        Cart cart = SessionUtil.getCurrentCart() ;
+        if(cart == null){
+            cart = new Cart();
+            //把购物车添加到session
+            SessionUtil.setCart(cart);
+        }
+        Product product = productService.queryById(entityId);
+        if ( quantity > product.getStock() )
+        {
+            throw new AddToCartExc("商品数量不足");
+        }
+        for (CartItem cartItem : cart.getItems()) {
+            if (cartItem.getProduct().getId().intValue() == entityId.intValue()){
+                cartItem.setQuantity(quantity);
+                return true;
+            }
+        }
+        return false;
     }
 }

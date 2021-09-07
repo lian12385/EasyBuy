@@ -31,5 +31,14 @@
         select * from easybuy_user
     </select>
 
+    <delete id="delete" parameterType="int" >
+        delete from easybuy_user where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="User" >
+        UPDATE easybuy_user set loginName=#{loginName},userName=#{userName},password=#{password},sex=#{sex},identityCode=#{identityCode},email=#{email},mobile=#{mobile},type=#{type}
+        where id=#{id}
+    </update>
+
 
 </mapper>

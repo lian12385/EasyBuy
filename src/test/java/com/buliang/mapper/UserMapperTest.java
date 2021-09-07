@@ -17,6 +17,9 @@ public class UserMapperTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
     public void queryById(){
         System.out.println(userService.queryById(2));
@@ -29,4 +32,9 @@ public class UserMapperTest {
         //userMapper.addUser(user);
     }
 
+    @Test
+    public void delete() {
+        Integer res = userMapper.delete(31);
+        System.out.println(res);
+    }
 }

@@ -265,11 +265,10 @@ function addUser() {
     var id = $("input[name='id']").val();
     var password = $("input[name='password']").val();
     $.ajax({
-        url: contextPath + "/admin/user",
+        url: contextPath + "/admin/user/updateUser",
         method: "post",
         data: {
            id: id,
-           action: "updateUser",
            loginName: loginName,
            userName: userName,
            identityCode: identityCode,
@@ -278,14 +277,15 @@ function addUser() {
            type: type,
            password:password
         },
-        success: function (jsonStr) {
-            var result = eval("(" + jsonStr + ")");
-            if (result.status == 1) {
-                window.location.href=contextPath+"/admin/user?action=queryUserList";
+        success: function (result) {
+            // var result = eval("(" + jsonStr + ")");
+            if (result.code == 2000) {
+                window.location.href=contextPath+"/admin/user/queryUserList";
             }else{
-            	showMessage(result.message);
+            	showMessage(result.msg);
             }
-        }
+        },
+        dataType: "json"
     });
 }
 /**
@@ -296,18 +296,18 @@ function deleteUserId(id) {
 	var bool=window.confirm("确认删除此用户信息么?");
 	if(bool){
 		$.ajax({
-	        url: contextPath + "/admin/user",
+	        url: contextPath + "/admin/user/deleteUserById",
 	        method: "post",
 	        data: {
-	            id: id,
-	            action: "deleteUserById"
+	            id: id
 	        },
-	        success: function (jsonStr) {
-	            var result = eval("(" + jsonStr + ")");
-	            if (result.status == 1) {
+	        success: function (result) {
+	            // var result = eval("(" + jsonStr + ")");
+	            if (result.code == 2000) {
 	                window.location.reload();
 	            }
-	        }
+	        },
+	        dataType:"json"
 	    });
 	}
 }

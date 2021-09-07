@@ -50,4 +50,20 @@ public class UserServiceImpl implements UserService {
     public List<User> AdminQueryAllUser() {
         return userMapper.queryAll();
     }
+
+    @Override
+    public boolean logicDelete(Integer id) {
+        if (userMapper.delete(id) > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        if ( userMapper.update(user) > 0){
+            return true;
+        }
+        return false;
+    }
 }

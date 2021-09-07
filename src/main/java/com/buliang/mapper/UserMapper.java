@@ -10,4 +10,6 @@ public interface UserMapper {
     User queryById(Integer id);
     User login(String name);
     List<User> queryAll();
+    int delete(Integer id);
+    int update(User user);
 }

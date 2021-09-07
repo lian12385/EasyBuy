@@ -5,8 +5,10 @@ import com.buliang.pojo.User;
 import java.util.List;
 
 public interface UserService {
-    public boolean addUser(User user);
-    public User queryById(int id);
-    public boolean queryByNameAndPassword(String name,String password);
+    boolean addUser(User user);
+    boolean updateUser(User user);
+    User queryById(int id);
+    boolean queryByNameAndPassword(String name,String password);
     List<User> AdminQueryAllUser();
+    boolean logicDelete(Integer id);
 }

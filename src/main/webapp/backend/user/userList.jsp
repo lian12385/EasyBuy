@@ -60,7 +60,9 @@
                         </td>
                         <td>
                         	<c:if test="${sessionScope.loginUser.id!=temp.id}">
-                           	 <a href="javascript:void(0);" onclick="deleteUserId('${temp.id}');" target="_blank">删除</a>
+                                <a href="javascript:void(0);" onclick="deleteUserId('${temp.id}');" target="_blank">删除</a>
+<%--                                <a href="javascript" onclick="deleteUserId('${temp.id}');">删除</a>--%>
+<%--                                <img src="${ctx}/statics/images/j_car.png" onclick="addCart();"/>--%>
                         	</c:if>
                         </td>
                     </tr>

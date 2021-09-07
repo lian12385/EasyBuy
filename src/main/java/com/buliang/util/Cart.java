@@ -11,9 +11,6 @@ public class Cart {
     private Double sum;
 
     public Double getSum() {
-        return items.stream().map(i->i.getCost()
-        ).reduce(0.0,(cost,sum)->{
-            return sum += cost;
-        });
+        return items.stream().map(i->i.getCost()).reduce(0.0,(cost,sum)-> sum += cost);
     }
 }

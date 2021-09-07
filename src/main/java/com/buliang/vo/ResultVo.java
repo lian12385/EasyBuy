@@ -26,6 +26,11 @@ public class ResultVo<T> {
         return new ResultVo(null);
     }
 
+    public static ResultVo mySuccess(ResultCode resultCode){
+        return new ResultVo(resultCode,null);
+    }
+
+
     public static ResultVo fail(ResultCode resultCode){
         return new ResultVo(resultCode,null);
     }

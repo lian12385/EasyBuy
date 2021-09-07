@@ -8,7 +8,13 @@ public class test {
     }
 
     public static void main(String[] args) {
-        System.out.println();
+        String a = "a";
+        String b = new String("a");
+        /*
+        equals是String类的方法，一般是String类的
+        对象.方法名()来调用；
+         */
+        System.out.println(a.equals(b));
     }
 
 
