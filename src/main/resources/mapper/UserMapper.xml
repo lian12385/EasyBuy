@@ -27,8 +27,9 @@
          </if>
         </where>
      </select>
-
-
+    <select id="queryAll" resultType="User">
+        select * from easybuy_user
+    </select>
 
 
 </mapper>

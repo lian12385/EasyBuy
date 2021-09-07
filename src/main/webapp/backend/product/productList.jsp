@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <%@ include file="/common/pre/header.jsp" %>
+  <%@ include file="/common/pre/link.jsp" %>
   <script src="${ctx}/statics/js/backend/backend.js"></script>
 </head>
 <body>
+<%@ include file="/common/pre/header.jsp" %>
 <%@ include file="/common/backend/searchBar.jsp" %>
 <!--End Header End-->
 <div class="i_bg bg_color">
@@ -29,13 +30,13 @@
           <tr>
             <td>${temp.name}</td>
             <td>
-              <a href="${ctx}/Product?action=queryProductDeatil&id=${temp.id}" target="_blank">
+              <a href="${ctx}/Product/queryProductDeatil&id=${temp.id}" target="_blank">
                   <img src="${ctx}/files/${temp.fileName}" width="50" height="50"/>
               </a>
             </td>
             <td>${temp.stock}</td>
             <td>${temp.price}</td>
-            <td><a href="${ctx}/admin/product?action=toUpdateProduct&id=${temp.id}">修改</a></td>
+            <td><a href="${ctx}/admin/product/toUpdateProduct&id=${temp.id}">修改</a></td>
             <td><a href="javascript:void(0);" onclick="deleteById('${temp.id}');">删除</a></td>
           </tr>
         </c:forEach>

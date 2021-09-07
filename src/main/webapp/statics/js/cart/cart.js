@@ -18,23 +18,23 @@ function addCart(){
 function addCartByParam(entityId,quantity){
     //添加到购物车
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/add",
         method: "post",
         data: {
-            action: "add",
             entityId: entityId,
             quantity: quantity
         },
-        success: function (jsonStr) {
-        	 var result = eval("(" + jsonStr + ")");
+        success: function (result) {
+        	 // var result = eval("(" + jsonStr + ")");
              //状态判断
-             if (result.status == 1) {
-            	 showMessage("操作成功");
+             if (result.code == 2000) {
+            	 showMessage(result.msg);
             	 refreshCart();
              }else{
-            	 showMessage(result.message);
+            	 showMessage(result.msg);
              }
-        }
+        },
+        dataType:"json"
     } )
 }
 /**
@@ -42,11 +42,8 @@ function addCartByParam(entityId,quantity){
  */
 function refreshCart(){
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/refreshCart",
         method: "post",
-        data: {
-            action: "refreshCart"
-        },
         success: function (jsonStr) {
             $("#searchBar").html(jsonStr);
         }
@@ -57,11 +54,8 @@ function refreshCart(){
  */
 function settlement1(){
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/settlement1",
         method: "post",
-        data: {
-            action: "settlement1"
-        },
         success: function (jsonStr) {
         	refreshCart();
             $("#settlement").html(jsonStr);
@@ -73,11 +67,8 @@ function settlement1(){
  */
 function settlement2(){
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/settlement2",
         method: "post",
-        data: {
-            action: "settlement2"
-        },
         success: function (jsonStr) {
             $("#settlement").html(jsonStr);
         }
@@ -104,10 +95,9 @@ function settlement3(){
         }
     }
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/settlement3",
         method: "post",
         data: {
-            action: "settlement3",
             addressId:addressId,
             newAddress:newAddress,
             newRemark:newRemark
@@ -152,10 +142,9 @@ function subQuantity(obj,entityId){
  */
 function modifyCart(entityId,quantity,obj){
 	$.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/modCart",
         method: "post",
         data: {
-            action: "modCart",
             entityId:entityId,
             quantity:quantity
         },
@@ -176,11 +165,8 @@ function modifyCart(entityId,quantity,obj){
  */
 function clearCart(){
     $.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/clearCart",
         method: "post",
-        data: {
-            action: "clearCart"
-        },
         success: function (jsonStr) {
             $("#settlement").html(jsonStr);
             showMessage("操作成功");
@@ -193,10 +179,9 @@ function clearCart(){
  */
 function removeCart(entityId){
 	$.ajax({
-        url: contextPath + "/Cart",
+        url: contextPath + "/Cart/modCart",
         method: "post",
         data: {
-            action: "modCart",
             entityId:entityId,
             quantity:0
         },
@@ -216,11 +201,8 @@ function removeCart(entityId){
  */
 function favoriteList(){
     $.ajax({
-        url: contextPath + "/Favorite",
+        url: contextPath + "/Favorite/toFavoriteList",
         method: "post",
-        data: {
-            action: "toFavoriteList"
-        },
         success: function (jsonStr) {
             $("#favoriteList").html(jsonStr);
         }
@@ -232,10 +214,9 @@ function favoriteList(){
  */
 function addFavorite(productId){
     $.ajax({
-        url: contextPath + "/Favorite",
+        url: contextPath + "/Favorite/addFavorite",
         method: "post",
         data: {
-            action: "addFavorite",
             id:productId
         },
         success: function (jsonStr) {

@@ -26,6 +26,7 @@ public class AdminNewsController {
         newsBo.setPage(true);
         newsBo.setPageIndex(pageIndex);
         newsBo.setPageSize(5);
+        newsBo.setStartIndex(newsBo.getStartIndex());
 
         Pages<News> newsPages = newsService.queryNewsByPage(newsBo);
         newsPages.setUrl("admin/news/queryNewsList?time="+System.currentTimeMillis());

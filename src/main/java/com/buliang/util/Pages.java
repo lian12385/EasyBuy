@@ -15,7 +15,7 @@ public class Pages<T> {
     private List<T> records;
     //@Getter(AccessLevel.NONE)
     //@Setter(AccessLevel.NONE)
-    //private Long totalPages;
+    //private Long totalCount;
 
     private String url;
 

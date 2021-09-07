@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <%@ include file="/common/pre/header.jsp" %>
+    <%@ include file="/common/pre/link.jsp" %>
     <script src="${ctx}/statics/js/backend/backend.js"></script>
 </head>
 <body>
+<%@ include file="/common/pre/header.jsp" %>
 <%@ include file="/common/backend/searchBar.jsp" %>
 <!--End Header End-->
 <div class="i_bg bg_color">

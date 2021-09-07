@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <%@ include file="/common/pre/header.jsp" %>
+    <%@ include file="/common/pre/link.jsp" %>
     <script src="${ctx}/statics/js/backend/backend.js"></script>
 </head>
 <body>
 <!--End Header End-->
+<%@ include file="/common/pre/header.jsp" %>
 <%@ include file="/common/backend/searchBar.jsp" %>
 <div class="i_bg bg_color">
     <!--Begin 用户中心 Begin -->
@@ -16,7 +17,7 @@
         <div class="m_right" id="content">
             <div class="mem_tit">用户列表</div>
             <p align="right">
-                <a href="${ctx}/admin/user?action=toAddUser"  class="add_b">添加用户</a>
+                <a href="${ctx}/admin/user/toAddUser"  class="add_b">添加用户</a>
                 <br>
             </p>
             <br>
@@ -55,7 +56,7 @@
                             </c:choose>
                         </td>
                         <td>
-                            <a href="${ctx}/admin/user?action=toUpdateUser&id=${temp.id}">修改</a>
+                            <a href="${ctx}/admin/user/toUpdateUser?id=${temp.id}">修改</a>
                         </td>
                         <td>
                         	<c:if test="${sessionScope.loginUser.id!=temp.id}">

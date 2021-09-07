@@ -6,7 +6,6 @@ import com.buliang.service.ProductCategoryService;
 import com.buliang.service.ProductService;
 import com.buliang.util.Pages;
 import com.buliang.vo.ProductCategoryVo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +27,8 @@ public class ProductController {
 
     @RequestMapping("/queryProductList")
     public String queryProductList(@RequestParam( defaultValue = "1") Integer level,
-                                   @Param("category") Integer category,
-                                   @Param("keyWord") String keyWord,
+                                   Integer category,
+                                   String keyWord,
                                    @RequestParam( defaultValue = "1") Integer pageIndex,
                                    Model model){
         ProductBo productBo = new ProductBo();
@@ -58,7 +57,7 @@ public class ProductController {
          * 构建分页页码的url
          */
 
-        pages.setUrl(creatUrl(category,level,keyWord));
+        pages.setUrl(creatUrl(level,category,keyWord));
         model.addAttribute("pager",pages);
         List<ProductCategoryVo> productCategoryVoList = productCategoryService.queryAllProductCategory();
         model.addAttribute("productCategoryVoList",productCategoryVoList);

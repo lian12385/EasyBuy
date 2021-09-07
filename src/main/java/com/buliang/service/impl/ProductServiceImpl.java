@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
         Pages<Product> pages = new Pages<>();
         pages.setPageIndex(productBo.getPageIndex());
         pages.setPageSize(productBo.getPageSize());
+        System.out.println(productBo.getStartIndex());
         pages.setTotalCount(productMapper.count(productBo));
-        List<Product> list = productMapper.queryByPages(productBo);
         pages.setRecords(productMapper.queryByPages(productBo));
 
         return pages;

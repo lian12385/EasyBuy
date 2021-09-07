@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <%@ include file="/common/pre/header.jsp" %>
+    <%@ include file="/common/pre/link.jsp" %>
     <script src="${ctx}/statics/js/backend/backend.js"></script>
 </head>
 <body>
+<%@ include file="/common/pre/header.jsp" %>
 <%@ include file="/common/backend/searchBar.jsp" %>
 <!--End Header End-->
 <div class="i_bg bg_color">
@@ -26,7 +27,7 @@
             </div>
             
             <br>
-            <form action="${ctx}/admin/product?action=addProduct" method="post" enctype="multipart/form-data" id="productAdd" onsubmit="return checkProduct();">
+            <form action="${ctx}/admin/product/addProduct" method="post" enctype="multipart/form-data" id="productAdd" onsubmit="return checkProduct();">
             <table border="0" class="add_tab" style="width:930px;" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="135" align="right">一级分类</td>

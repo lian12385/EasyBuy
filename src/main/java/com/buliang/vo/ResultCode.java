@@ -7,7 +7,10 @@ public enum ResultCode {
     SUCCESS(2000,"响应成功"),
     LOGIN_FAIL(5000,"登陆失败,用户名或密码错误"),
     REGISTER_FAIL(1002,"注册失败"),
-    REGISTER_SUCCESS(2000,"注册成功");
+    REGISTER_SUCCESS(2000,"注册成功"),
+    ADD_CART_SUCCESS(2000,"添加成功"),
+    ADD_CART_FAIL(1003,"商品数量不足"),
+    Fail(1004,"响应失败");
 
     private int code;
     private String msg;
