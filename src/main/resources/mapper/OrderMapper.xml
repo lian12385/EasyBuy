@@ -5,11 +5,11 @@
 
  <mapper namespace="com.buliang.mapper.OrderMapper">
 
-    <insert id="add" parameterType="order" resultType="">
-
+    <insert id="add" parameterType="order">
+        insert into easybuy_order
+        (userId,loginName,userAddress,createTime,cost,serialNumber,payStatus)
+        values(#{order.userID}, #{order.loginName},#{order.userAddress},now(),#{order.cost},#{order.serialNumber},#{order.payStatus})
     </insert>
 
-    <select id="" resultType="order">
 
-    </select>
 </mapper>

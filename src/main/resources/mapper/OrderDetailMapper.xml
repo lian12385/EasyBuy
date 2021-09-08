@@ -5,4 +5,13 @@
 
  <mapper namespace="com.buliang.mapper.OrderDetailMapper">
 
+    <insert id="batchAdd" parameterType="List">
+        insert into easybuy_order_detail(orderId,productId,quantity,cost)
+        values
+        <foreach collection ="orderDetails" item="item" separator =",">
+            (
+            #{item.orderId}, #{item.productId}, #{item.quantity},#{item.cost}
+            )
+        </foreach >
+    </insert>
 </mapper>

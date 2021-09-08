@@ -5,7 +5,11 @@
 
  <mapper namespace="com.buliang.mapper.UserAddressMapper">
     <insert id="addAddress" parameterType="userAddress">
-
+        insert into easybuy_user_address(userId,address,createTime,isDefault,remark)
+        values
+            (
+            #{userId}, #{address}, now(),#{isDefault},#{remark}
+            )
     </insert>
 
      <select id="queryById" resultType="UserAddress">

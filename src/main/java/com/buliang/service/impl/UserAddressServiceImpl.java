@@ -1,6 +1,6 @@
 package com.buliang.service.impl;
 
-import com.buliang.exc.AddToCartExc;
+import com.buliang.exc.EBuyExc;
 import com.buliang.mapper.UserAddressMapper;
 import com.buliang.pojo.User;
 import com.buliang.pojo.UserAddress;
@@ -16,11 +16,11 @@ public class UserAddressServiceImpl implements UserAddressService {
     @Autowired
     UserAddressMapper userAddressMapper;
 
-    public List<UserAddress> queryByUserId() throws AddToCartExc {
+    public List<UserAddress> queryByUserId() throws EBuyExc {
         User user = SessionUtil.getCurrentUser();
         if (user != null){
             return userAddressMapper.queryById(user.getId());
         }
-        throw new AddToCartExc("未登录,请登录");
+        throw new EBuyExc("未登录,请登录");
     }
 }

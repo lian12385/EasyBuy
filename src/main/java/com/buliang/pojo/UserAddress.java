@@ -16,5 +16,6 @@ public class UserAddress implements Serializable {
     private Integer userId;
     private Date createTime;//创建时间
     private String remark;
+    private Integer isDefault;
 
 }

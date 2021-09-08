@@ -1,6 +1,6 @@
 package com.buliang.web;
 
-import com.buliang.exc.AddToCartExc;
+import com.buliang.exc.EBuyExc;
 import com.buliang.pojo.Order;
 import com.buliang.pojo.User;
 import com.buliang.pojo.UserAddress;
@@ -16,7 +16,6 @@ import com.buliang.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,7 +44,7 @@ public class CartController {
             boolean res =cartService.addToCart(entityId, quantity);
             return res?ResultVo.mySuccess(ResultCode.ADD_CART_SUCCESS):ResultVo.fail(ResultCode.Fail);
         }
-        catch (AddToCartExc e){
+        catch (EBuyExc e){
             return ResultVo.fail(ResultCode.ADD_CART_FAIL);
         }
     }
@@ -56,7 +55,7 @@ public class CartController {
         try{
             return cartService.modifyCart(entityId,quantity)?ResultVo.mySuccess(ResultCode.ADD_CART_SUCCESS):ResultVo.fail(ResultCode.Fail);
         }
-        catch (AddToCartExc e){
+        catch (EBuyExc e){
             return ResultVo.fail(ResultCode.ADD_CART_FAIL);
         }
     }
@@ -96,8 +95,8 @@ public class CartController {
         List<UserAddress> userAddressList = null;
         try {
             userAddressList = userAddressService.queryByUserId();
-        } catch (AddToCartExc addToCartExc) {
-            //addToCartExc.printStackTrace();
+        } catch (EBuyExc EBuyExc) {
+            //EBuyExc.printStackTrace();
             return "redirect:/User/page/login";
         }
         model.addAttribute("userAddressList",userAddressList);
