@@ -4,6 +4,7 @@
 /**
  * 商品详情页添加到购物车
  */
+$ = jq.noConflict()
 function addCart(){
     var entityId=$("input[name='entityId']").val();
     var quantity=$("input[name='quantity']").val();
@@ -54,7 +55,7 @@ function refreshCart(){
  */
 function settlement1(){
     $.ajax({
-        url: contextPath + "/Cart/settlement/1",
+        url: contextPath + "/Cart/settlement1",
         method: "post",
         success: function (jsonStr) {
         	refreshCart();
@@ -67,7 +68,7 @@ function settlement1(){
  */
 function settlement2(){
     $.ajax({
-        url: contextPath + "/Cart/settlement/2",
+        url: contextPath + "/Cart/settlement2",
         method: "post",
         success: function (jsonStr) {
             $("#settlement").html(jsonStr);
@@ -95,7 +96,7 @@ function settlement3(){
         }
     }
     $.ajax({
-        url: contextPath + "/Cart/settlement/3",
+        url: contextPath + "/Cart/settlement3",
         method: "post",
         data: {
             addressId:addressId,
@@ -104,8 +105,8 @@ function settlement3(){
         },
         success: function (jsonStr) {
         	if(jsonStr.substr(0,1)=="{"){
-        		var result = eval("(" + jsonStr + ")");
-        		showMessage(result.message);
+        		// var result = eval("(" + jsonStr + ")");
+        		showMessage(jsonStr.msg);
         	}else{
         		$("#settlement").html(jsonStr);
         	}
@@ -179,19 +180,19 @@ function clearCart(){
  */
 function removeCart(entityId){
 	$.ajax({
-        url: contextPath + "/Cart/modCart",
+        url: contextPath + "/Cart/modifyCart",
         method: "post",
         data: {
             entityId:entityId,
             quantity:0
         },
-        success: function (jsonStr) {
-        	var result = eval("(" + jsonStr + ")");
+        success: function (result) {
+        	// var result = eval("(" + jsonStr + ")");
             //状态判断
-            if (result.status == 1) {
+            if (result.code == 2000) {
             	settlement1();
             }else{
-           	 	showMessage(result.message);
+           	 	showMessage(result.msg);
             }
         }
     });

@@ -16,7 +16,10 @@ public enum ResultCode {
     ADD_CART_FAIL(1003,"商品数量不足"),
 
     LOGIC_DELETE_SUCCESS(2000,"删除成功"),
-    LOGIC_DELETE_FAIL(1003,"删除失败");
+    LOGIC_DELETE_FAIL(1004,"删除失败"),
+
+    REMOVE_CART_SUCCESS(2000,"删除成功"),
+    REMOVE_CART_FAIL(1005,"删除失败");
 
 
 

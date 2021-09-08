@@ -36,7 +36,7 @@
     </delete>
 
     <update id="update" parameterType="User" >
-        UPDATE easybuy_user set loginName=#{loginName},userName=#{userName},password=#{password},sex=#{sex},identityCode=#{identityCode},email=#{email},mobile=#{mobile},type=#{type}
+        UPDATE easybuy_user set loginName=#{loginName},userName=#{userName},identityCode=#{identityCode},email=#{email},mobile=#{mobile},type=#{type},sex=#{sex}
         where id=#{id}
     </update>
 

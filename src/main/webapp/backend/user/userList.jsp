@@ -17,7 +17,7 @@
         <div class="m_right" id="content">
             <div class="mem_tit">用户列表</div>
             <p align="right">
-                <a href="${ctx}/admin/user/toAddUser"  class="add_b">添加用户</a>
+                <a href="${ctx}/backend/user/toUpdateUser.jsp"  class="add_b">添加用户</a>
                 <br>
             </p>
             <br>
@@ -60,7 +60,7 @@
                         </td>
                         <td>
                         	<c:if test="${sessionScope.loginUser.id!=temp.id}">
-                                <a href="javascript:void(0);" onclick="deleteUserId('${temp.id}');" target="_blank">删除</a>
+                                <a href="javascript:void(0);" onclick="deleteUserId('${temp.id}');" >删除</a>
 <%--                                <a href="javascript" onclick="deleteUserId('${temp.id}');">删除</a>--%>
 <%--                                <img src="${ctx}/statics/images/j_car.png" onclick="addCart();"/>--%>
                         	</c:if>

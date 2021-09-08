@@ -16,7 +16,7 @@ public class Order implements Serializable {
 	private Integer userId;//用户id
 	private String userAddress;//收货地址
 	private Date createTime;//创建时间
-	private Float cost;//订单总计价格
+	private double cost;//订单总计价格
 	private String loginName;//登录名称
 	private List<OrderDetail> orderDetailList;//订单明细列表
 

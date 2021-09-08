@@ -1,3 +1,4 @@
+var $ = jQuery.noConflict();
 //分类添加
 function toAddProductCategory() {
     $.ajax({
@@ -214,7 +215,7 @@ function checkUser() {
         return false;
     }
     
-    if(loginName.length<2 || loginName>10){
+    if(loginName.length<2 || loginName.length>10){
         showMessage("登录名不能小于两个字符或者大于十个字符.");
         return false;
     }
@@ -262,6 +263,7 @@ function addUser() {
     var email = $("input[name='email']").val();
     var mobile = $("input[name='mobile']").val();
     var type = $("select[name='type']").val();
+    var sex = $("input[name='sex']").val();
     var id = $("input[name='id']").val();
     var password = $("input[name='password']").val();
     $.ajax({
@@ -275,6 +277,7 @@ function addUser() {
            email: email,
            mobile: mobile,
            type: type,
+            sex:sex,
            password:password
         },
         success: function (result) {
@@ -302,6 +305,7 @@ function deleteUserId(id) {
 	            id: id
 	        },
 	        success: function (result) {
+	            // alert(result.code)
 	            // var result = eval("(" + jsonStr + ")");
 	            if (result.code == 2000) {
 	                window.location.reload();

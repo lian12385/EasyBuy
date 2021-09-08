@@ -41,6 +41,15 @@
                             <input type="text" value="${user.userName}" class="add_ipt" name="userName"/>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td width="135" align="right">&nbsp;性别 &nbsp;</td>
+                        <td>
+                            <input type="radio" name="sex" value="1" >&nbsp;男&nbsp;&nbsp;
+                            <input type="radio" name="sex" value="0">&nbsp;女
+                        </td>
+                    </tr>
+
                     <c:if test="${empty user.id ||  user.id==0}">
                         <tr>
                             <td width="135" align="right">密码</td>

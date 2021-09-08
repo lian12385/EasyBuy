@@ -11,6 +11,7 @@ import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,10 +70,29 @@ public class CartServiceImpl implements CartService {
         }
         for (CartItem cartItem : cart.getItems()) {
             if (cartItem.getProduct().getId().intValue() == entityId.intValue()){
-                cartItem.setQuantity(quantity);
+                if (quantity > 0) {
+                    cartItem.setQuantity(quantity);
+                }
+                else if(quantity ==0 ){
+                    cart.getItems().remove(cartItem);
+                }
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean modCart(Integer entityId) {
+        Cart cart = SessionUtil.getCurrentCart() ;
+        if(cart == null){
+            cart = new Cart();
+            //把购物车添加到session
+            SessionUtil.setCart(cart);
+        }
+        Product product = productService.queryById(entityId);
+
+        cart.getItems().removeIf(ele-> (ele.getProduct().getId()).intValue() == entityId.intValue() );
+        return true;
     }
 }

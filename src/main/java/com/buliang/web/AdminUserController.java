@@ -41,10 +41,14 @@ public class AdminUserController {
         return "forward:/backend/user/toUpdateUser.jsp";
     }
 
+
+
+
     @RequestMapping("/updateUser")
     @ResponseBody
     public ResultVo updateUser(User user){
-        if (userService.updateUser(user)){
+        boolean res = user.getId() == null?userService.addUser(user):userService.updateUser(user);
+        if (res){
             return  ResultVo.success();
         }
         return ResultVo.fail(ResultCode.Fail);

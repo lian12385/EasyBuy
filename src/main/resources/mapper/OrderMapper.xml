@@ -5,4 +5,11 @@
 
  <mapper namespace="com.buliang.mapper.OrderMapper">
 
+    <insert id="add" parameterType="order" resultType="">
+
+    </insert>
+
+    <select id="" resultType="order">
+
+    </select>
 </mapper>

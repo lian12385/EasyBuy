@@ -2,12 +2,16 @@ package com.buliang.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Objects;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//@EqualsAndHashCode
 public class Product implements Serializable{
 	private Integer id;//ID
 	private String name;//商品名
@@ -19,5 +23,4 @@ public class Product implements Serializable{
 	private Integer categoryLevel3Id;//三级分类
 	private String fileName;//图片名称
 	private boolean isDelete;//逻辑删除
-
 }
