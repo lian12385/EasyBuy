@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  <mapper namespace="com.buliang.mapper.ProductMapper">
+
+    <update id="subStock" parameterType="int">
+        update easybuy_product set stock = #{afterSubStock} where id = #{productId}
+    </update>
+
     <select id="queryByPages" parameterType="productBo" resultType="product">
         SELECT * FROM easybuy_product
         <if test = "productBo != null">

@@ -52,7 +52,7 @@ public class AdminOrderServiceImpl implements AdminOrderService {
         order.setUserAddress(newAddress);
         order.setUserId(user.getId());
         order.setCost(sum);
-        order.setPayStatus(0);
+//        order.setPayStatus(0);
         String randomNum = UUID.randomUUID().toString().toUpperCase().replaceAll("\\-","");
         order.setSerialNumber(randomNum);
         if(orderMapper.add(order)>0){

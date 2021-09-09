@@ -104,23 +104,28 @@ public class CartController {
     }
 
     @RequestMapping("/settlement3")
-    public String settlement3(
+    public String settlement3 (
             Integer addressId,
             String newAddress,
             String newRemark,
-            Model model){
+            Model model) throws EBuyExc{
 
-        User user = SessionUtil.getCurrentUser();
-        Cart cart = SessionUtil.getCurrentCart();
+//        User user = SessionUtil.getCurrentUser();
+//        Cart cart = SessionUtil.getCurrentCart();
+//          更具id判断是否新建地址,非-1则根据id查询用户地址
+//        adminOrderService.createUserAddress(addressId,newAddress,newRemark);
+//         创建订单
+//        Order order = adminOrderService.createOrder(user,newAddress,cart.getSum());
+//        创建订单详情
+//        adminOrderService.createOrderDetail(cart,order.getId());
+////
+//        CurrentOrderVo currentOrderVo = new CurrentOrderVo();
+//        currentOrderVo.setCost(cart.getSum());
+//        currentOrderVo.setUserAddress(newAddress);
+//        currentOrderVo.setSerialNumber(order.getSerialNumber());
 
-        adminOrderService.createUserAddress(addressId,newAddress,newRemark);
-        Order order = adminOrderService.createOrder(user,newAddress,cart.getSum());
-        adminOrderService.createOrderDetail(cart,order.getId());
+        Order currentOrderVo = cartService.settlementCart(addressId,newAddress,newRemark);
 
-        CurrentOrderVo currentOrderVo = new CurrentOrderVo();
-        currentOrderVo.setCost(cart.getSum());
-        currentOrderVo.setUserAddress(newAddress);
-        currentOrderVo.setSerialNumber(order.getSerialNumber());
 
         //返回信息,
         model.addAttribute("currentOrder",currentOrderVo);

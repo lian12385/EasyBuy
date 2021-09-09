@@ -1,6 +1,7 @@
 package com.buliang.vo;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public enum ResultCode {
@@ -25,10 +26,12 @@ public enum ResultCode {
 
 
     private int code;
+    @Setter
     private String msg;
 
     ResultCode(int code, String msg){
         this.code = code;
         this.msg = msg;
     }
+
 }

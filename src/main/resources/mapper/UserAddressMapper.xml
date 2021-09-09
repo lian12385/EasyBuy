@@ -15,4 +15,8 @@
      <select id="queryById" resultType="UserAddress">
         select * from easybuy_user_address where userId=#{id}
     </select>
+
+    <select id="query" resultType="UserAddress">
+        select * from easybuy_user_address where id=#{id}
+    </select>
 </mapper>

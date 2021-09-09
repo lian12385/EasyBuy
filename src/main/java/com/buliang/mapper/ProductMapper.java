@@ -13,4 +13,5 @@ public interface ProductMapper {
     List<Product> queryByPages(@Param("productBo") ProductBo productBo);
     Long count(@Param("productBo") ProductBo productBo);
     Product queryById(Integer id);
+    boolean subStock(@Param("productId") Integer productId, @Param("afterSubStock") Integer afterSubStock);
 }

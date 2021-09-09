@@ -7,8 +7,8 @@
 
     <insert id="add" parameterType="order">
         insert into easybuy_order
-        (userId,loginName,userAddress,createTime,cost,serialNumber,payStatus)
-        values(#{order.userID}, #{order.loginName},#{order.userAddress},now(),#{order.cost},#{order.serialNumber},#{order.payStatus})
+        (userId,loginName,userAddress,createTime,cost,serialNumber)
+        values(#{order.userId}, #{order.loginName},#{order.userAddress},#{order.createTime},#{order.cost},#{order.serialNumber})
     </insert>
 
 
