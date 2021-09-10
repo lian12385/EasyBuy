@@ -145,13 +145,16 @@ public class CartServiceImpl implements CartService {
 //        order.setPayStatus(0);
         String randomNum = UUID.randomUUID().toString().toUpperCase().replaceAll("\\-","");
         order.setSerialNumber(randomNum);
-        int orderId = orderMapper.add(order);
+        if (orderMapper.add(order) < 0) {
+            throw new EBuyExc("创建订单失败!");
+        }
+
 
         List<CartItem> cartItems =cart.getItems();
         List<OrderDetail> orderDetails = new ArrayList<>();
         for (CartItem item : cartItems) {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrderId(orderId);
+            orderDetail.setOrderId(order.getId());
             orderDetail.setQuantity(item.getQuantity());
             orderDetail.setProductId(item.getProduct().getId());
             orderDetail.setCost(item.getCost());
@@ -165,6 +168,10 @@ public class CartServiceImpl implements CartService {
         }
         //插入订单详情
         orderDetailMapper.batchAdd(orderDetails);
+
+        //cart Session clear
+        SessionUtil.clearCart(cart);
+
         return order;
     }
     public boolean checkOutQuantity(Cart cart) {

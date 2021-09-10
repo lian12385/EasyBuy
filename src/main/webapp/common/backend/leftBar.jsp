@@ -8,7 +8,7 @@
         <ul>
             <li><a href="${ctx}/admin/order/index?userId=${sessionScope.loginUser.id}" <c:if test="${menu==1}"> class="now" </c:if>>我的订单</a></li>
         	<c:if test="${sessionScope.loginUser.type==1}">
-        		<li><a href="${ctx}/admin/order/queryAllOrder" <c:if test="${menu==9}"> class="now" </c:if>>全部订单</a></li>
+        		<li><a href="${ctx}/admin/order/index" <c:if test="${menu==9}"> class="now" </c:if>>全部订单</a></li>
         	</c:if>
         </ul>
     </div>

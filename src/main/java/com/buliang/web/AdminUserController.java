@@ -1,7 +1,11 @@
 package com.buliang.web;
 
+import com.buliang.bo.NewsBo;
+import com.buliang.bo.UserBo;
+import com.buliang.pojo.News;
 import com.buliang.pojo.User;
 import com.buliang.service.UserService;
+import com.buliang.util.Pages;
 import com.buliang.vo.ResultCode;
 import com.buliang.vo.ResultVo;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.annotation.Retention;
@@ -28,9 +33,19 @@ public class AdminUserController {
     }
 
     @RequestMapping("/queryUserList")
-    public String queryUserList(Model model){
-        List<User> userList = userService.AdminQueryAllUser();
-        model.addAttribute("userList",userList);
+    public String queryUserList(@RequestParam(defaultValue = "1") Integer pageIndex, Model model){
+
+        UserBo userBo = new UserBo();
+        userBo.setPage(true);
+        userBo.setPageIndex(pageIndex);
+        userBo.setPageSize(5);
+        userBo.setStartIndex(userBo.getStartIndex());
+
+
+        Pages<User> userPages = userService.queryUserByPage(userBo);
+        userPages.setUrl("admin/user/queryUserList?time="+System.currentTimeMillis());
+
+        model.addAttribute("pager",userPages);
         return "forward:/backend/user/userList.jsp";
     }
 

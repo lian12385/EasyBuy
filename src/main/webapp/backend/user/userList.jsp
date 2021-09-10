@@ -31,7 +31,7 @@
                     <td width="5%">类型</td>
                     <td width="5%" colspan="2">操作</td>
                 </tr>
-                <c:forEach items="${userList}" var="temp">
+                <c:forEach items="${pager.records}" var="temp">
                     <tr>
                         <td>${temp.loginName}</td>
                         <td>${temp.userName}</td>

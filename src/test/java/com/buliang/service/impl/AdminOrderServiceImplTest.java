@@ -32,28 +32,4 @@ public class AdminOrderServiceImplTest {
     public void createOrder() {
     }
 
-    @Test
-    public void createOrderDetail() {
-        Cart cart = new Cart();
-        List<CartItem> cartItems = new ArrayList<>();
-        CartItem cartItem = new CartItem();
-        cartItem.setQuantity(4);
-
-        Product product = new Product();
-        product.setId(544);
-        cartItem.setProduct(product);
-        cartItems.add(cartItem);
-
-        CartItem cartItem1 = new CartItem();
-        cartItem1.setQuantity(4);
-
-        Product product1 = new Product();
-        product1.setId(555);
-        cartItem1.setProduct(product1);
-        cartItems.add(cartItem1);
-
-        cart.setItems(cartItems);
-        adminOrderService.createOrderDetail(cart,4);
-
-    }
 }

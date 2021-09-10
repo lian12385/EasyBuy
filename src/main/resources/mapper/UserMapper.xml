@@ -30,6 +30,39 @@
     <select id="queryAll" resultType="User">
         select * from easybuy_user
     </select>
+    <select id="queryTotalCountUsers" resultType="Long">
+        select count(1) from easybuy_user
+        <where>
+            <include refid="where_sql"/>
+        </where>
+    </select>
+
+    <select id="queryUsers"  parameterType="UserBo" resultType="User">
+        select * from easybuy_user
+        <where>
+            <include refid="where_sql"/>
+        </where>
+        <if test="userBo!=null">
+            <if test="userBo.isPage">
+                limit #{userBo.startIndex},#{userBo.pageSize}
+            </if>
+        </if>
+
+    </select>
+
+    <sql id = "where_sql">
+        <if test="userBo != null ">
+            <if test="userBo.user != null ">
+                <if test="userBo.user.id != null ">
+                    and id = #{userBo.user.id}
+                </if>
+                <if test="userBo.user.loginName != null and userBo.user.loginName !=''  ">
+                    and loginName like '%${userBo.user.loginName}%'
+                </if>
+            </if>
+        </if>
+    </sql>
+
 
     <delete id="delete" parameterType="int" >
         delete from easybuy_user where id=#{id}

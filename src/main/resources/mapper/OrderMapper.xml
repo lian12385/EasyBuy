@@ -5,11 +5,65 @@
 
  <mapper namespace="com.buliang.mapper.OrderMapper">
 
-    <insert id="add" parameterType="order">
+    <insert id="add" parameterType="order" useGeneratedKeys="true" keyProperty="id">
         insert into easybuy_order
         (userId,loginName,userAddress,createTime,cost,serialNumber)
-        values(#{order.userId}, #{order.loginName},#{order.userAddress},#{order.createTime},#{order.cost},#{order.serialNumber})
+        values(#{userId}, #{loginName},#{userAddress},now(),#{cost},#{serialNumber})
     </insert>
 
+    <select id="queryOrderCount" resultType="java.lang.Long">
+        select count(1) from easybuy_order o,easybuy_order_detail od
+        <where>
+            o.id = od.orderId
+            <include refid="order_sql"></include>
+        </where>
+    </select>
 
-</mapper>
+    <select id="queryOrder" resultMap="orderOrderDetail">
+        select
+            o.id oId, o.serialNumber oSnum,o.userId oUid,o.userAddress oaddr,o.createTime oCt,o.cost oc,o.loginName olnam,
+            od.id odId,od.orderId odOr,od.productId odPid,od.quantity odQu,od.cost odco
+        from easybuy_order o, easybuy_order_detail od
+        <where>
+            o.id = od.orderId
+            <include refid="order_sql"></include>
+        </where>
+        <if test="orderBo!=null">
+            <if test="orderBo.isPage">
+                limit #{orderBo.startIndex},#{orderBo.pageSize}
+            </if>
+        </if>
+    </select>
+
+    <resultMap id="orderOrderDetail" type="order">
+        <result property="id" column="oId"/>
+        <result property="serialNumber" column="oSnum"/>
+        <result property="userId" column="oUid"/>
+        <result property="userAddress" column="oaddr"/>
+        <result property="createTime" column="oCt"/>
+        <result property="cost" column="oc"/>
+        <result property="loginName" column="olnam"/>
+        <collection property="orderDetailList" ofType="OrderDetail" javaType="list">
+            <result property="id" column="odId"/>
+            <result property="orderId" column="odOr"/>
+            <result property="productId" column="odPid"/>
+            <result property="quantity" column="odQu"/>
+            <result property="cost" column="odco"/>
+        </collection>
+    </resultMap>
+
+    <sql id ="order_sql">
+        <if test="orderBo != null ">
+            <if test="orderBo.userId != null ">
+                and o.userId = #{orderBo.userId}
+            </if>
+            <if test="orderBo.order != null ">
+                <if test="orderBo.order.loginName != null and userBo.user.loginName !=''  ">
+                    and loginName like '%${orderBo.order.loginName}%'
+                </if>
+            </if>
+        </if>
+    </sql>
+
+
+ </mapper>

@@ -33,4 +33,8 @@ public class SessionUtil {
         return  (Cart) getSession().getAttribute(CART_IN_SESSION);
     }
 
+    public static void clearCart(Cart cart){
+        getSession().removeAttribute(CART_IN_SESSION);
+    }
+
 }
